@@ -1,1 +1,45 @@
 
+#####################################################################
+Arduino library: 
+
+   >>>>  MultiTimer_ISR  <<<<
+
+    by: Vinicius Calil
+    release date: 2021/jan/02 
+
+#####################################################################
+
+Description:
+  Use a single hardware Timer/Counter to emulate multiple (software) 
+  timers/counters. 
+  
+  The programmer just need to give a function (that works like an 
+  interrupt service handle to the emulated timer), a period (in 
+  which the given function will be called) and the number of times 
+  that this function shall be called.
+  
+  The hardware Timer/Counter1 from Arduino Uno (AVR ATmeg 328P 
+  microcontroller) operates in "Clear Timer on Compare Match (CTC)", 
+  managing the values to store in OCR1A register that will match the 
+  next moment in which any emulated timer must trigger its (pseudo) 
+  interrupt service handle. 
+
+Features:
+  1) The Timer/Counter1 is configured automatically.
+  2) Emulated Timers can be included dynamically.
+  3) The code has a debug feature that uses Timer/Counter 2 to count the 
+     amount of clock cycles required to run ISR(TIMER1_COMPA_vect).
+  4) The debug feature has a function that is able to calculate the 
+     difference of two compound registers (with an I/O hardware register 
+     plus a (memory resident) variable) even in a presence of one single 
+     overflow.
+  5) There is an emulator of a (low period - 20 mili seconds-) PWM signal.
+  
+Samples:
+  1) At the end of the file "MultiTimer_ISR.h", there is a sample code 
+     intended to work like a tutorial. Just copy and paste it to an 
+     Arduino Sketch, then include the library files.
+  2) At the end of the file "MultiTimer_ISR.cpp", there is a sample code 
+     intended to help in debugging of this library. Just copy and paste 
+     it to an Arduino Sketch, then include the library files.
+  
